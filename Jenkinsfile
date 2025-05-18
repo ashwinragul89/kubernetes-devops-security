@@ -20,5 +20,13 @@ pipeline {
         }
       }
     }
-  }
+
+    stage('Docker Build and Push') {
+      steps {
+          sh 'printenv'
+          sh 'docker build -t ashwinragul21/devsecops/numeric-app:""$GIT_COMMIT"" .'
+          sh 'docker push ashwinragul21/devsecops/numeric-app:""$GIT_COMMIT""'
+        }
+      }
+      }
 }
