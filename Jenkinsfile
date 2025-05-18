@@ -23,12 +23,8 @@ pipeline {
 
     stage('Docker Build and Push') {
       steps {
-        sh 'id'
-        sh 'sudo su'
-        withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+       withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
           sh 'printenv'
-          sh 'echo "Entered root"'
-          sh 'id'
           sh 'docker build -t ashwinragul21/devsecops/numeric-app:""$GIT_COMMIT"" .'
           sh 'docker push ashwinragul21/devsecops/numeric-app:""$GIT_COMMIT""'
        }
